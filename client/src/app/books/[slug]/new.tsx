@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
+//data del libro
 type FormData = {
   _id: string;
   title: string;
@@ -31,17 +32,22 @@ export default function NewBookPage({book} : NewBookPageProps) {
 
   const onSubmit = async (data: FormData) => {
     try {
+      //si el libro tiene data, hay que crear actualizar un libro con put
       if (book) {
         await axios.put(`/api/library/${book._id}`, data);
+      //si no tiene data es un libro nuevo y hay que crearlo con post
       } else {
         await axios.post("/api/library", data);
       }
+
+      //una vez ejecutado regresamos a la pantalla principal
       window.location.href = '/';
     } catch (error) {
       console.log(error)
     }
   };
 
+  //formulario del libro
   return (
     <div className="container">
       <div className="row">

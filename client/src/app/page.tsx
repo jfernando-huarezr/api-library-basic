@@ -19,6 +19,7 @@ export default function IndexPage() {
     setTotalBooks(responseBooks.length)
   }
 
+  //funcion para borrar un libro, con un window alert
   const deleteBook = async (bookId: any) => {
     if (window.confirm('Are you sure you want to delete this book?')) {
       try {
@@ -62,6 +63,7 @@ export default function IndexPage() {
                             <td>{book.author}</td>
                             <td>${book.cost}</td>
                             <td>{book.category}</td>
+                            {/* botones para el CRUD*/}
                             <td><a href={`/books/${book._id}`}><FontAwesomeIcon icon={faMagnifyingGlass}/></a></td>
                             <td><a href={`/books/${book._id}-edit`}><FontAwesomeIcon icon={faPenToSquare} /></a></td>
                             <td><a onClick={() => deleteBook(book._id)}><FontAwesomeIcon icon={faTrash} /></a></td>

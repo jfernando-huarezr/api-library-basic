@@ -6,11 +6,14 @@ import NewBookPage from "./new";
 export default function Page({ params }: {params: {slug: string}}) {
 
     const [currentBook, setCurrentBook] = useState<any>(null);
+    //de los botones del crud, el boton de editar termina en edit. Verificamos si se ha presionado ese boton con esta variable
     const isEditMode = params.slug.endsWith('edit');
+    //tambien dependiendo si se quiere saber el detalle o editar se verifica el params.slug para obtener el bookID
     const bookId = isEditMode ? params.slug.slice(0, -5) : params.slug;
   
 
     const fetchData = async () => {
+        //Si no queremos cargar la pagina de un nuevo libro, necesitamos obtener la data del libro que queremos ver el detalle o editar
         if (bookId !== "new") {
             const responseBook = await axios.get(`/api/library/${bookId}`).then((response) => response.data);
             setCurrentBook(responseBook);
@@ -22,15 +25,18 @@ export default function Page({ params }: {params: {slug: string}}) {
           fetchData();
       }, []);
 
-
+      //si es un nuevo libro, solo cargamos la pagina del formulario
       if(params.slug === "new") {
         return <NewBookPage/>
       }
-    
+      
+      //si hay que editar un libro, se debe cargar la pagina del formulario (new.tsx) pero enviando la data del libro a editar
+      //antes de eso tenemos que estar seguro que ha cargado la data en currentBook, si no se queda en Loading... antes de pasar a new.tsx
       if (isEditMode) {    
         return currentBook ? <NewBookPage book = {currentBook} /> : <div>Loading...</div>;
       }
 
+    //si no es ni editar un libro o un libro nuevo, seria la opcion de mostrar el detalle del libro
     return currentBook ? (
         <div className="container">
             <div className="row">
