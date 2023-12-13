@@ -16,4 +16,11 @@ spec:
               service:
                 name: library-srv
                 port:
+                  number: 3001
+          - pathType: Prefix
+            path: "/?(.*)"
+            backend:
+              service:
+                name: client-srv
+                port:
                   number: 3000

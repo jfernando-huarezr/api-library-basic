@@ -13,8 +13,8 @@ const start = async () => {
     } catch (err) {
         console.error(err)
     }
-    app.listen(3000, () => {
-        console.log("library api service is online")
+    app.listen(3001, () => {
+        console.log("library api service is online @ 3001")
     })
 }
 
