@@ -37,42 +37,51 @@ export default function IndexPage() {
     fetchData();
   }, [])
 
-  return (
+  return books ? (
     <div className="container">
-            <div className="row">
-                <div className="col-12">
-                    <h2>You have a total of {totalBooks} books</h2>
-                    <button onClick={ () => window.location.href='/books/new'}>New Book</button>
-
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Title</th>
-                          <th>Author</th>
-                          <th>Cost</th>
-                          <th>Category</th>
-                          <th>More Info</th>
-                          <th>Update</th>
-                          <th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody>                            
-                        {(books ?? []).map((book: any) => (
-                          <tr key={book.title}>
-                            <td>{book.title}</td>
-                            <td>{book.author}</td>
-                            <td>${book.cost}</td>
-                            <td>{book.category}</td>
-                            {/* botones para el CRUD*/}
-                            <td><a href={`/books/${book._id}`}><FontAwesomeIcon icon={faMagnifyingGlass}/></a></td>
-                            <td><a href={`/books/${book._id}-edit`}><FontAwesomeIcon icon={faPenToSquare} /></a></td>
-                            <td><a onClick={() => deleteBook(book._id)}><FontAwesomeIcon icon={faTrash} /></a></td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                </div>
-            </div>
+      <div className="d-flex justify-content-between">
+        <div>
+          <h2>Number of books in your library: {totalBooks}</h2>           
         </div>
-  )
+        <div>
+          <button className="btn btn-primary" onClick={ () => window.location.href='/books/new'}>+ New Book</button>
+        </div>
+      </div>
+
+      <div className="row mt-5">
+        <div className="col-12">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Cost</th>
+                  <th>Category</th>
+                  <th>More Info</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>                            
+                {(books ?? []).map((book: any) => (
+                  <tr key={book.title}>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>${book.cost}</td>
+                    <td>{book.category}</td>
+                    
+                    {/* botones para el CRUD*/}
+                    <td><a className="btn-detail" href={`/books/${book._id}`}><FontAwesomeIcon icon={faMagnifyingGlass}/></a></td>
+                    <td><a className="btn-edit" href={`/books/${book._id}-edit`}><FontAwesomeIcon icon={faPenToSquare} /></a></td>
+                    <td><a className="btn-delete" onClick={() => deleteBook(book._id)}><FontAwesomeIcon icon={faTrash} /></a></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  ) :
+  
+  <div>Loading...</div>
 }

@@ -31,7 +31,7 @@ export default function Page({ params }: {params: {slug: string}}) {
       }
       
       //si hay que editar un libro, se debe cargar la pagina del formulario (new.tsx) pero enviando la data del libro a editar
-      //antes de eso tenemos que estar seguro que ha cargado la data en currentBook, si no se queda en Loading... antes de pasar a new.tsx
+      //antes de eso tenemos que estar seguros de que ha cargado la data en currentBook, si no se queda en Loading... antes de pasar a new.tsx
       if (isEditMode) {    
         return currentBook ? <NewBookPage book = {currentBook} /> : <div>Loading...</div>;
       }
@@ -39,7 +39,8 @@ export default function Page({ params }: {params: {slug: string}}) {
     //si no es ni editar un libro o un libro nuevo, seria la opcion de mostrar el detalle del libro
     return currentBook ? (
         <div className="container">
-            <div className="row">
+            <h2>Book details: </h2>
+            <div className="row mt-4">
                 <div className="col-12">
                     <p>BookId: {currentBook._id}</p>
                     <p>Title: {currentBook.title}</p>
@@ -54,13 +55,13 @@ export default function Page({ params }: {params: {slug: string}}) {
                     <p>Country of origin: {currentBook.countryOrigin}</p>
                 </div>
             </div>
-            <button onClick={ () => window.location.href='http://isil.dev'}>Return</button>
+            <button className="btn btn-primary fs-4 mt-3" onClick={ () => window.location.href='http://isil.dev'}>Return</button>
         </div>
     ) : (
         <div className='container'>
             <div className='row'>
                 <div className='col'>
-                    <h5>No register</h5>
+                    <h5>Loading...</h5>
                 </div>
             </div>
         </div>

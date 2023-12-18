@@ -28,8 +28,6 @@ export default function NewBookPage({book} : NewBookPageProps) {
     defaultValues: book
   });
 
-  console.log(`I'm from new ${book}`)
-
   const onSubmit = async (data: FormData) => {
     try {
       //si el libro tiene data, hay que crear actualizar un libro con put
@@ -50,9 +48,10 @@ export default function NewBookPage({book} : NewBookPageProps) {
   //formulario del libro
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-12">
+      <div className="row justify-content-center">
+        <div className="col-4">
           <h2>{book ? "Modify Book" : "Add New Book"} </h2>
+
           <form onSubmit={handleSubmit(onSubmit)} className="needs-validation" noValidate>
             <div className="form-group">
               <label htmlFor="title">Title</label>
@@ -64,7 +63,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.title && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="author">Author</label>
               <input
                 type="text"
@@ -74,7 +73,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.author && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
@@ -83,7 +82,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.description && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="year">Year</label>
               <input
                 type="number"
@@ -93,7 +92,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.year && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="ISBN">ISBN</label>
               <input
                 type="text"
@@ -103,7 +102,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.ISBN && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group form-check">
+            <div className="form-group form-check mt-3">
               <input
                 type="checkbox"
                 id="hardcover"
@@ -112,7 +111,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               <label className="form-check-label" htmlFor="hardcover">Hardcover</label>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="countryOrigin">Country of Origin</label>
               <input
                 type="text"
@@ -122,7 +121,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.countryOrigin && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="cost">Cost</label>
               <input
                 type="number"
@@ -132,7 +131,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.cost && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <div className="form-group form-check">
+            <div className="form-group form-check mt-2">
               <input
                 type="checkbox"
                 id="autographed"
@@ -141,7 +140,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               <label className="form-check-label" htmlFor="autographed">Autographed</label>
             </div>
-            <div className="form-group">
+            <div className="form-group mt-2">
               <label htmlFor="category">Category</label>
               <input
                 type="text"
@@ -151,7 +150,7 @@ export default function NewBookPage({book} : NewBookPageProps) {
               />
               {errors.category && <div className="invalid-feedback">This field is required</div>}
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary mt-3 fs-4">Submit</button>
           </form>
         </div>
       </div>
